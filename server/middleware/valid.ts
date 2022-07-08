@@ -2,6 +2,7 @@ import { Request, Response, NextFunction } from "express";
 
 export const validRegister = async (req: Request, res: Response, next: NextFunction) => {
     const { name, account, password } = req.body;
+ 
 
     //validation for empty name
     if (!name) {
@@ -25,12 +26,15 @@ export const validRegister = async (req: Request, res: Response, next: NextFunct
     next();
 }
 
-function validPhone(phone: string) {
+
+//function of the validation to phone (format)
+export function validPhone(phone: string) {
     const re = /^[+]/g
     return re.test(phone)
 }
 
-function validateEmail(email: string) {
+//function of the validation to email (format)
+export function validateEmail(email: string) {
     const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(String(email).toLowerCase());
 }
