@@ -2,4 +2,4 @@
 leraning about mern stack with typescipt technology
 
 
-parou na 7 aula
+parou na 9 aos 9:15
