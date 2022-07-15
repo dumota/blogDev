@@ -33,9 +33,10 @@ const sendEmail =async (to:string, url:string, txt:string) => {
         const mailOptions={
             from: SENDER_MAIL,
             to: to,
-            subject: "BlogDev",
+            subject: "O Manicômio",
             html:`
-                <h1>Blog dev Mandando uma mensagem pra ver se ta tudo okay</h1>
+                <h1>Acesse o Link para Validar sua conta e ativa-la</h1>
+                <p>O Manicômico agradece!</p>
                 <p>${url}</p>
                 
                 
