@@ -52,25 +52,26 @@ const authController = {
     activeAccount: async (req: Request, res: Response) => {
         try {
             const { active_token } = req.body;
+            console.log(active_token);
+
             const decoded = <IDecodedToken>jwt.verify(active_token, `${process.env.ACTIVE_TOKEN_SECRET}`)
             const { newUser } = decoded;
 
             if (!newUser) return res.status(400).json({ msg: "Invalid authenticantion" })
 
-            const user = new User(newUser);
-            await user.save();
+            const user = await User.findOne({ account: newUser.account })
+
+
+
+            if (user) return res.status(404).json({ msg: "Account Already exits." })
+             const new_user = new User(newUser);
+             await new_user.save();
+
             res.json({ msg: "Account has been activated" });
 
 
         } catch (err: any) {
-            let errMsg;
-            if (err.code === 11000) {
-                errMsg = Object.keys(err.keyValue)[0] + "Already exist"
-
-
-            }
-
-            return res.status(500).json({ msg: err });
+            return res.status(500).json({ msg: err.message });
         }
     },
 
@@ -119,7 +120,7 @@ const authController = {
             const access_token = generateAccessToken({ id: user._id });
 
 
-            res.json({ access_token });
+            res.json({ access_token, user });
 
         } catch (err: any) {
             return res.status(500).json({ msg: err });

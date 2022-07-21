@@ -2,4 +2,4 @@
 leraning about mern stack with typescipt technology
 
 
-parou na 12
+parou na 14

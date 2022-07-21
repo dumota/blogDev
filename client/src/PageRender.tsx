@@ -15,7 +15,7 @@ const generatePage = (name:string)=>{
 }
 
 
-export const  PageRender  = ()=>{
+ const  PageRender  = ()=>{
     const {page, slug}: IParams = useParams();
     
     let name = '';
@@ -26,3 +26,5 @@ export const  PageRender  = ()=>{
     
     return generatePage(name);
 }
+
+export default PageRender;

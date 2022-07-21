@@ -1,8 +1,19 @@
-import React from "react"
+import React, { useEffect } from "react"
 import LoginPass from "../components/auth/LoginPass";
-import { Link } from "react-router-dom";
+import { Link , useHistory} from "react-router-dom";
+import { useSelector } from "react-redux";
+import { RootStore } from "../utils/Typescript";
 
 const Login = () => {
+
+    const history = useHistory();
+
+    const { auth } = useSelector((state: RootStore) => state)
+
+    useEffect(()=>{
+        if(auth.access_token) history.push('/')
+    },[auth.access_token, history])
+
     return (
         <div className="auth_page">
             <div className="auth_box">

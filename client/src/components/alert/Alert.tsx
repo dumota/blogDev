@@ -6,7 +6,7 @@ import { RootStore } from "../../utils/Typescript";
 
 
 
-const Alert = () => {
+export const Alert = () => {
 
     const { alert } = useSelector((state: RootStore) => state);
 
@@ -28,5 +28,12 @@ const Alert = () => {
     )
 }
 
+export const showErrMsg = (msg: string) =>{
+    return <div className="errMsg">{msg}</div>
+}
 
-export default Alert;
+export const showSuccessMsg = (msg: string) =>{
+    return <div className="successMsg">{msg}</div>
+}
+
+
